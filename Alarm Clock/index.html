@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html>
+
+<title>Alarm Clock</title>
+
+<style>
+
+*{
+    margin: 0;
+  }
+
+
+/*-----------------------This is the */
+
+body{
+    /*margin: 0;*/
+  }
+/*--------------This is the background of the clock Wonder Wheel Coney Island Img--------------*/
+
+#clock-img{
+    background-image: url(images/ConeyWW.jpg);
+    background-size: cover;
+    height: 1100px;
+
+}
+
+#clock-img2{
+    background-image: url(images/ConeyWWNight.jpg);
+    background-size: cover;
+    height: 1100px;
+
+}
+
+#label{
+    margin-left: 100px;
+    font-family: 'Bungee Inline', cursive;
+    font-family: 'Codystar', cursive;
+    font-size: 80px;
+    color: white;
+    text-shadow:  0 0 10px yellow, 
+                  0 0 20px yellow, 
+                  0 0 30px yellow, 
+                  0 0 40px yellow, 
+                  0 0 50px yellow, 
+                  0 0 60px yellow,
+                  0 0 70px yellow;
+                                       
+    /*transform: rotate(-15deg);*/
+
+}
+
+/*-------------------------------- This is the display of the clock ----------------------------*/
+
+#time-display{
+    margin-top: 470px;
+    margin-left: 50px;
+    height: 60px;
+    width: 270px;
+    text-align: center;
+    font-family: 'Bungee Inline', cursive;
+    font-family: 'Codystar', cursive;
+    font-size: 50px;
+    font-weight: bolder;
+    color: white;
+    text-shadow:  0 0 10px yellow, 
+                  0 0 20px yellow, 
+                  0 0 30px yellow, 
+                  0 0 40px yellow, 
+                  0 0 50px yellow, 
+                  0 0 60px yellow,
+                  0 0 70px yellow;
+    border: 1px solid #0e4463;  
+    border-radius: 10px;
+    background: none;
+
+/*-------------------------------- This is the display of the set alarm ----------------------------*/
+
+}
+  #alarm-display{
+    margin-top: 470px;
+    height: 60px;
+    width: 270px;
+    text-align: center;
+    font-family: 'Bungee Inline', cursive;
+    font-family: 'Codystar', cursive;
+    font-size: 50px;
+    font-weight: bolder;
+    color: white;
+    text-shadow:  0 0 10px yellow, 
+                  0 0 20px yellow, 
+                  0 0 30px yellow, 
+                  0 0 40px yellow, 
+                  0 0 50px yellow, 
+                  0 0 60px yellow,
+                  0 0 70px yellow;
+    border: 1px solid #0e4463;  
+    border-radius: 10px;
+    background: none;
+  }
+
+/*------------------------- This is the modal for the alarm fireworks video --------------------------*/
+
+.modalDialog {
+      position: fixed;
+      font-family: Arial, Helvetica, sans-serif;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 99999;
+      opacity:0;
+      -webkit-transition: opacity 400ms ease-in;
+      -moz-transition: opacity 400ms ease-in;
+      transition: opacity 400ms ease-in;
+      pointer-events: none;
+      }
+
+      .modalAlarm:target {
+        opacity:1;
+        pointer-events: auto;
+      }
+
+      .modalAlarm > div {
+      width: 650px;
+      height: auto;
+      position: relative;
+      margin: 10% auto;
+      padding: 5px 20px 13px 20px;
+      border-radius: 10px;
+      background: #fff;
+      background: -moz-linear-gradient(#fff, #999);
+      background: -webkit-linear-gradient(#fff, #999);
+      background: -o-linear-gradient(#fff, #999);
+      }
+
+      .close {
+      background: #606061;
+      color: #FFFFFF;
+      line-height: 25px;
+      position: absolute;
+      right: -12px;
+      text-align: center;
+      top: -10px;
+      width: 24px;
+      text-decoration: none;
+      font-weight: bold;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      -moz-box-shadow: 1px 1px 3px #000;
+      -webkit-box-shadow: 1px 1px 3px #000;
+      box-shadow: 1px 1px 3px #000;
+      }
+
+
+    .close:hover { background: #00d9ff; }
+
+  
+</style>
+
+<head>
+
+<!--                 ***********  This link recognizes the funky font  ***********                -->
+
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Codystar|Open+Sans" rel="stylesheet">
+</head>
+
+<!-- This is the method for the display time -->
+
+  <body onLoad="showTime()">
+
+    <center>
+
+        <div id="clock-img">
+
+
+        <br>
+        <br>
+
+
+           <h1 id="label"> CONEY ISLAND </h1>
+
+            <form name="htmlClock">
+
+<!--                      ************ This is the display htmlClock ***********                    -->
+
+              <input id="time-display" type="text" name="screen" size=16>
+            
+            
+
+              <input id="alarm-display"  type="text" name"htmlClock2" size=16>
+
+
+            </form>
+
+            <!-- <p id="demo"></p> -->
+
+          <script language="JavaScript">
+
+          function showTime() {
+            var timeNow = new Date();
+            var hours   = timeNow.getHours();
+            var minutes = timeNow.getMinutes();
+            var seconds = timeNow.getSeconds();
+            // var milliseconds = timeNow.getMilliSeconds();
+            var currentTime = "" + ((hours > 12) ? hours - 12 : hours);
+            currentTime  += ((minutes < 10) ? ":0" : ":") + minutes;
+            currentTime  += ((seconds < 10) ? ":0" : ":") + seconds;
+            currentTime  += (hours >= 12) ? " P.M." : " A.M.";
+            document.htmlClock.screen.value = currentTime;
+            timerID = setTimeout("showTime()", 1000);
+          }
+// -------------------- This is the setAlarm function to input the time ---------------------//
+
+          // function setAlarm(){
+          //   
+          // //   var H, M, S = 0;
+          // //   function TimeCorrect(i){
+          // //     if (i<10){
+          // //       i="0"+i;
+          // //       }
+          // //   return i;
+          // //   }
+
+          // //   //get time values
+          // //   H=prompt("HH");
+          // //   M=prompt("MM");
+          // //   S=prompt("SS");
+
+          // //   var d = new Date(); //Date constructor
+          // //   d.setHours(H,M,S);
+          // //   H=TimeCorrect(d.getHours());
+          // //   M=TimeCorrect(d.getMinutes());
+          // //   S=TimeCorrect(d.getSeconds());
+
+          // //   //Displays date
+          // //   document.getElementById("demo").innerHTML = (H+":"+M+":"+S);
+          // // // }
+
+//  while (int loop = 1)
+//  {
+//  if ((timeNow.getHours === d.getHours()) && (timeNow.getMinutes d.getMinutes() === M) && (d.getSeconds() === S))
+//   {
+//      triggerAlarm ();
+//      loop = 0;
+//   }
+//   wait (100);
+//   }
+
+
+// -------------------------- This is the function that triggers the alarm ------------------------//
+      // var SetAlarm= time-display
+
+// document.getElementById("setAlarm").;
+
+
+// ------------------ This is the alarm effect Coney Island Fireworks 7/4/17 modal? ------------------//
+
+//<a href="#openModal">alarm button</a>
+
+// <div id="openModal" class="modalDialog">
+//   <div>
+
+//     <a href="#close" title="Close" class="close">X</a>
+//     <h2>Fireworks Alarm</h2>
+    
+//     <iframe width="560" height="315" src="https://www.youtube.com/embed/pewTDfduMLc" frameborder="0" allowfullscreen></iframe>
+//   </div>
+  
+// </div> 
+
+// 
+
+
+
+
+          </script>
+
+
+        </div>
+
+      </center>
+
+    </body>
+
+</html>
